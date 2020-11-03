@@ -50,6 +50,17 @@ nvm install node
 nvm use node
 
 # install rvm and ruby (2.5.7)
-\curl -sSL https://get.rvm.io | bash -s stable --ruby
+if [ $(which rvm) == "rvm not found" ]
+then
+  echo "rvm already installed. skipping."
+else
+  \curl -sSL https://get.rvm.io | bash -s stable --ruby
+  source /Users/andrewgarvin/.rvm/scripts/rvm
+fi
 
-rvm -v
+rvm install 2.5.7
+rvm use 2.5.7
+
+gem install colorls
+
+echo 'alias ls="colorls"' >> ~/.zshrc
